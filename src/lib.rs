@@ -60,6 +60,7 @@
 //!
 //! [Agner’s instruction tables]: http://agner.org/optimize/
 #![cfg_attr(not(feature = "std"), no_std)]
+#![feature(rustc_private)]
 
 extern crate rand_core;
 
@@ -188,12 +189,12 @@ macro_rules! impl_rand {
             /// instruction necessary for this generator to operate. If the instruction is not
             /// supported, an error is returned.
             pub fn new() -> Result<Self, Error> {
-                if is_x86_feature_detected!($feat) {
+                //if is_x86_feature_detected!($feat) {
                     Ok($gen(()))
-                } else {
-                    Err(Error::new(rand_core::ErrorKind::Unavailable,
-                                   "the instruction is not supported"))
-                }
+                //} else {
+                //    Err(Error::new(rand_core::ErrorKind::Unavailable,
+                //                   "the instruction is not supported"))
+                //}
             }
 
             /// Generate a single random `u16` value.
